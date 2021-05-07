@@ -1,0 +1,8 @@
+# exported server files
+server*
+
+# exported game files
+Game*
+
+# import cache
+import/
