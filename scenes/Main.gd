@@ -37,9 +37,9 @@ func init_server() -> void:
 	is_server = true
 
 func init_client() -> void:
-	# don't hardcode things :(
-	var server_host := "192.168.69.2"
-	var server_port := 7070
+	var args := OS.get_cmdline_args()
+	var server_host := args[0]
+	var server_port := int(args[1])
 	peer.create_client(server_host, server_port)
 	is_server = false
 
