@@ -1,2 +1,8 @@
-# the exported pack file
-server.pck
+# exported server files
+server*
+
+# exported game files
+Game*
+
+# import cache
+import/

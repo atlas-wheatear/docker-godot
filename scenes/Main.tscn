@@ -1,0 +1,69 @@
+[gd_scene load_steps=10 format=2]
+
+[ext_resource path="res://fonts/Xolonium-Regular.ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://scenes/Main.gd" type="Script" id=2]
+[ext_resource path="res://scenes/HTTPRequestOgg.gd" type="Script" id=3]
+[ext_resource path="res://scenes/OggPlayer.gd" type="Script" id=4]
+[ext_resource path="res://scenes/History.gd" type="Script" id=5]
+[ext_resource path="res://scenes/Getter.gd" type="Script" id=6]
+
+[sub_resource type="DynamicFont" id=1]
+size = 100
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=3]
+size = 20
+font_data = ExtResource( 1 )
+
+[node name="Main" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Requester" type="HTTPRequest" parent="."]
+script = ExtResource( 3 )
+
+[node name="Send" type="Button" parent="."]
+margin_left = 222.0
+margin_top = 470.0
+margin_right = 811.0
+margin_bottom = 596.0
+custom_fonts/font = SubResource( 1 )
+text = "Press Me"
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="Input" type="LineEdit" parent="."]
+margin_left = 2.0
+margin_top = 399.776
+margin_right = 1020.0
+margin_bottom = 464.776
+custom_fonts/font = SubResource( 2 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[node name="OggPlayer" type="AudioStreamPlayer" parent="."]
+script = ExtResource( 4 )
+
+[node name="Getter" type="HTTPRequest" parent="OggPlayer"]
+script = ExtResource( 6 )
+
+[node name="History" type="TextEdit" parent="."]
+margin_left = 1.8877
+margin_top = 1.88776
+margin_right = 1025.89
+margin_bottom = 375.888
+custom_fonts/font = SubResource( 3 )
+readonly = true
+script = ExtResource( 5 )
+__meta__ = {
+"_edit_use_anchors_": true
+}
+
+[connection signal="request_completed" from="Requester" to="." method="_on_Requester_request_completed"]
+[connection signal="button_up" from="Send" to="." method="_on_Send_button_up"]
+[connection signal="request_completed" from="OggPlayer/Getter" to="OggPlayer" method="_on_Getter_request_completed"]
