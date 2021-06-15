@@ -5,6 +5,10 @@ var getter: HTTPRequest
 func _ready():
 	getter = $Getter
 
+func set_socket(host: String, port: int) -> void:
+	var socket := "http://" + host + ":" + str(port)
+	getter.set_socket(socket)
+
 func play_tts(uuid: String) -> void:
 	getter.get_tts(uuid)
 

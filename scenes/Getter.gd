@@ -1,11 +1,13 @@
 extends HTTPRequest
 
-# don't hardcode things :(
-const URL = "http://192.168.69.2:5050/dl"
+var URL : String
 
 
 func _ready():
 	pass
+
+func set_socket(socket: String) -> void:
+	URL = socket + "/dl"
 
 func get_tts(uuid: String) -> void:
 	var body := JSON.print({"uuid": uuid})

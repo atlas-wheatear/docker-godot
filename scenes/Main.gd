@@ -1,6 +1,7 @@
 extends Node2D
 
 const SERVER_ID = 1
+const TTS_PORT = 5050
 
 var send: Button
 var input: LineEdit
@@ -41,6 +42,7 @@ func init_client() -> void:
 	var server_host := args[0]
 	var server_port := int(args[1])
 	peer.create_client(server_host, server_port)
+	player.set_socket(server_host, TTS_PORT)
 	is_server = false
 
 remote func generate_tts(text: String) -> void:
